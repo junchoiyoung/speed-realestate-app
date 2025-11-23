@@ -1,4 +1,4 @@
-package org.speed.realestate.main
+package org.speed.realestate.screens.main
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -53,7 +53,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.speed.realestate.AddReadEstateSheet
+import org.speed.realestate.add.AddReadEstateSheet
 import org.speed.realestate.constant.CategoryItems
 import org.speed.realestate.ui.RealEstateViewModelProvider
 import org.speed.realestate.ui.theme.backgroundColor
