@@ -52,22 +52,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import org.speed.realestate.add.AddReadEstateSheet
 import org.speed.realestate.constant.CategoryItems
-import org.speed.realestate.ui.RealEstateViewModelProvider
 import org.speed.realestate.ui.theme.backgroundColor
 import org.speed.realestate.ui.viewmodel.RealEstateViewModel
-import kotlin.text.orEmpty
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RealEstateMainScreen(
+    viewModel: RealEstateViewModel,
+    onSearchBarClick: () -> Unit
 ) {
-    val viewModel: RealEstateViewModel = viewModel(
-        factory = RealEstateViewModelProvider.Factory
-    )
-
     val realEstateNames by viewModel.realEstateNames.collectAsState()
     val realEstateTypes by viewModel.realEstateTypes.collectAsState()
     val realEstateDong by viewModel.realEstateDongs.collectAsState()
@@ -100,7 +95,7 @@ fun RealEstateMainScreen(
         },
         modifier = Modifier.background(backgroundColor),
         bottomBar = {
-            SearchBar()
+            SearchBar(onSearchBarClick = onSearchBarClick)
         }
 
     ) { paddingValues ->
@@ -182,6 +177,8 @@ fun RealEstateMainScreen(
                 val currentMap = selectedTags.value.toMutableMap()
                 currentMap[title] = tagsString
                 selectedTags.value = currentMap.toMap()
+
+                viewModel.updateFilterTags(selectedTags.value.toMap())
             }
         )
     }
@@ -459,7 +456,7 @@ fun BottomSheetTag(
 }
 
 @Composable
-fun SearchBar() {
+fun SearchBar(onSearchBarClick: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -467,7 +464,7 @@ fun SearchBar() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Button(
-            onClick = { },
+            onClick = onSearchBarClick,
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color.Red,
                 contentColor = Color.White,
