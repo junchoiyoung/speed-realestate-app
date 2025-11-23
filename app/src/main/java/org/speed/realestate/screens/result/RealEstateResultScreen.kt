@@ -43,9 +43,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.speed.realestate.RealEstateDetail
-import org.speed.realestate.UpdateRealEstateSheet
 import org.speed.realestate.data.RealEstate
+import org.speed.realestate.screens.detail.RealEstateDetail
+import org.speed.realestate.screens.detail.UpdateRealEstateSheet
 import org.speed.realestate.ui.theme.backgroundColor
 import org.speed.realestate.ui.theme.detailPriceTextColor
 import org.speed.realestate.ui.theme.detailRedColor
