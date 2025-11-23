@@ -53,6 +53,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.speed.realestate.AddReadEstateSheet
 import org.speed.realestate.constant.CategoryItems
 import org.speed.realestate.ui.RealEstateViewModelProvider
 import org.speed.realestate.ui.theme.backgroundColor
@@ -79,6 +80,8 @@ fun RealEstateMainScreen(
             .distinct()
             .sorted()
     }
+
+    val tags by viewModel.tags.collectAsState()
 
     var title by remember { mutableStateOf("") }
 
@@ -119,6 +122,19 @@ fun RealEstateMainScreen(
                 )
             }
         }
+    }
+
+    if (showAddRealEstateSheet) {
+        AddReadEstateSheet(
+            tags = tags,
+            onSubmit = { viewModel.add(it) },
+            onDismiss = { showAddRealEstateSheet = false },
+            onAdd = {
+                it.forEach { tag ->
+                    viewModel.addTag(tag)
+                }
+            }
+        )
     }
 
     if (showBottomSheet) {
@@ -166,8 +182,6 @@ fun RealEstateMainScreen(
                 val currentMap = selectedTags.value.toMutableMap()
                 currentMap[title] = tagsString
                 selectedTags.value = currentMap.toMap()
-
-                viewModel.updateFilterTags(selectedTags.value.toMap())
             }
         )
     }
