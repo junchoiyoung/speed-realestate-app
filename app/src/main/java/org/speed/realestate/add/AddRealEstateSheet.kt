@@ -149,10 +149,9 @@ fun AddReadEstateSheetContent(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            if (realEState == null){
+            if (realEState == null) {
                 Text("매물 등록", fontSize = 22.sp, fontWeight = FontWeight.Bold)
-            }
-            else {
+            } else {
                 Text("매물 수정", fontSize = 22.sp, fontWeight = FontWeight.Bold)
             }
 
@@ -169,7 +168,8 @@ fun AddReadEstateSheetContent(
                     Text(
                         text = "태그 추가",
                         fontSize = 14.sp,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.Black
                     )
                 }
             }
@@ -327,7 +327,10 @@ fun AddReadEstateSheetContent(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             OutlinedButton(onClick = onDismiss) {
-                Text("취소")
+                Text(
+                    text = "취소",
+                    color = Color.Black
+                )
             }
             Button(
                 onClick = {
