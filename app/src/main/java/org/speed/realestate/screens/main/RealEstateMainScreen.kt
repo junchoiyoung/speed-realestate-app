@@ -55,6 +55,10 @@ import androidx.compose.ui.unit.sp
 import org.speed.realestate.add.AddReadEstateSheet
 import org.speed.realestate.constant.CategoryItems
 import org.speed.realestate.ui.theme.backgroundColor
+import org.speed.realestate.ui.theme.borderColor
+import org.speed.realestate.ui.theme.contentColor
+import org.speed.realestate.ui.theme.selectedContainerColor
+import org.speed.realestate.ui.theme.selectedContentColor
 import org.speed.realestate.ui.viewmodel.RealEstateViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -430,9 +434,9 @@ fun BottomSheetTag(
     select: Boolean,
     onClick: () -> Unit = {},
 ) {
-    val containerColor = if (select) Color(0xFFE8F0FF) else Color.White
-    val contentColor = if (select) Color(0xFF2962FF) else Color(0xFF333333)
-    val borderColor = if (select) Color(0xFF2962FF) else Color(0xFFD9D9D9)
+    val containerColor = if (select) selectedContainerColor else Color.White
+    val contentColor = if (select) selectedContentColor else contentColor
+    val borderColor = if (select) selectedContentColor else borderColor
 
     OutlinedButton(
         onClick = onClick,
